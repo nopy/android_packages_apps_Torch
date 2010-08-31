@@ -34,9 +34,7 @@ public class FlashDevice {
 	    return instance;
 	}
 	
-	public synchronized void setFlashMode(int mode) {
-Log.d( TAG, "mode == "+ mode ) ;
-	
+	public synchronized void setFlashMode(int mode) {	
 	        if (! opened) {
 	            openFlash() ;
 		    opened = true ;		    
