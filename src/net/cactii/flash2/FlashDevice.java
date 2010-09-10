@@ -84,6 +84,7 @@ public class FlashDevice {
 	public static native String setFlashOff() ;
 	public static native String setFlash2On() ;
 	public static native String setFlash2Off() ;
+	public static native String setFlashLevel( int level ) ;
     // Load libflash once on app startup.
     static {
     System.loadLibrary("jni_flash");
