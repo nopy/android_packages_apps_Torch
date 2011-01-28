@@ -253,7 +253,6 @@ public class MainActivity extends Activity {
                 Settings.System.TORCH_STATE, 0) == 1) {
             mTorchOn = true;
             buttonOn.setChecked(true);
-            buttonBright.setEnabled(false);
             buttonStrobe.setEnabled(false);
             if (!buttonStrobe.isChecked()) {
                 slider.setEnabled(false);
@@ -261,7 +260,6 @@ public class MainActivity extends Activity {
         } else {
             mTorchOn = false;
             buttonOn.setChecked(false);
-            buttonBright.setEnabled(true);
             buttonStrobe.setEnabled(true);
             slider.setEnabled(true);
         }
