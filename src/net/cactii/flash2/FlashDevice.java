@@ -19,7 +19,7 @@ public class FlashDevice {
 	
 	private static FlashDevice instance;
 	
-	private static boolean useDeathRay = !Build.DEVICE.equals("supersonic");
+	private static boolean useDeathRay = !Build.DEVICE.equals("supersonic") && !Build.DEVICE.equals("glacier");
 	
 	private boolean opened = false ;
 	

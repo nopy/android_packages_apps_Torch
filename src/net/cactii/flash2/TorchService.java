@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.util.Log;
 
 import java.util.Timer;
@@ -88,7 +89,7 @@ public class TorchService extends Service {
             this.mStrobePeriod = intent.getIntExtra("period", 200) / 4;
             this.mStrobeTimer.schedule(this.mStrobeTask, 0, this.mStrobePeriod);
         } else {
-            this.mTorchTimer.schedule(this.mTorchTask, 0, 200);
+            this.mTorchTimer.schedule(this.mTorchTask, 0, 100);
         }
 
         this.mReceiver = new IntentReceiver();
@@ -103,6 +104,8 @@ public class TorchService extends Service {
         this.mNotificationManager.notify(0, this.mNotification);
 
         startForeground(0, this.mNotification);
+        Settings.System.putInt(this.getContentResolver(), Settings.System.TORCH_STATE, 1);
+        this.sendBroadcast(new Intent(TorchSwitch.TORCH_STATE_CHANGED));
         return START_STICKY;
     }
 
@@ -113,6 +116,8 @@ public class TorchService extends Service {
         this.mTorchTimer.cancel();
         this.mStrobeTimer.cancel();
         FlashDevice.instance().setFlashMode(FlashDevice.OFF);
+        Settings.System.putInt(this.getContentResolver(), Settings.System.TORCH_STATE, 0);
+        this.sendBroadcast(new Intent(TorchSwitch.TORCH_STATE_CHANGED));
     }
 
     public void Reshedule(int period) {
