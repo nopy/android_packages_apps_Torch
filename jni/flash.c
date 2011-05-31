@@ -17,10 +17,10 @@ int ioctlRetVal = 1;
 
 JNIEXPORT jstring JNICALL Java_net_cactii_flash2_FlashDevice_openFlash(JNIEnv* env)
 {
-  LOGD("opening /dev/msm_camera/msm_camera0") ;
-  dev = open("/dev/msm_camera/msm_camera0", O_RDWR);
+  LOGD("opening /dev/msm_camera/control0") ;
+  dev = open("/dev/msm_camera/control0", O_RDWR);
   if (dev < 0) {
-    LOGE("failed opening /dev/msm_camera/msm_camera0") ;
+    LOGE("failed opening /dev/msm_camera/control0") ;
     return (*env)->NewStringUTF(env, "Failed");
   }
   LOGD("open OK") ;
